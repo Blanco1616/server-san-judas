@@ -1,6 +1,6 @@
-import User from ' ../users/user.model.js'
+import User from '../user/user.model.js'
 import { hash, verify } from 'argon2'
-import {genererJWT } from "../../herpers/JWT-generate,js"
+import {generarJWT } from '../../helpers/JWT-generate.js'
 
 export const register = async (req,res) => {
     try{
@@ -22,7 +22,6 @@ export const register = async (req,res) => {
             userDetails: {
                 user: newUser.username,
                 email: newUser.email,
-
             },
         });
     }catch(error){
@@ -35,8 +34,8 @@ export const register = async (req,res) => {
 export const login = async (req,res) => {
     const { email,password,username} = req.body;
     try{
-        const lowerEmail = email? email.tolowerCase(): null;
-        const lowerUsername = username ? username.tolowerCase(): null;
+        const lowerEmail = email? email.toLowerCase(): null;
+        const lowerUsername = username ? username.toLowerCase(): null;
 
         const user = await User.findOne({
             $or:[{email:lowerEmail},{username: lowerUsername}],
@@ -48,7 +47,7 @@ export const login = async (req,res) => {
         if (!validPassword){
             return res.status(401).json({message: "Credenciales incorrectas"});
         }
-        const token = await genererJWT(user.id, user.email);
+        const token = await generarJWT(user.id, user.email);
         return res.status(200).json({
             mesage: "Inicio de sesión exitoso",
             userDetails: {

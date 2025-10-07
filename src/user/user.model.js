@@ -29,7 +29,7 @@ const userSchema = new Schema({
     },
     password:{
         type: String,
-        requited: [true, 'La contraseña es obligatoria'],
+        required: [true, 'La contraseña es obligatoria'],
         minLength: [8, 'La contraseña debe tener menos de 8 caracteres'],
     },
     profilePicture:{
