@@ -10,6 +10,7 @@ import userModel from '../src/user/user.model.js'
 import authRoutes from '../src/auth/auth.routes.js'
 import postRoutes from "../src/posts/post.routes.js"
 import requestLimit from "../middlewares/request-limit.js"
+import commentRoutes from "../src/comments/comments.routes.js"
 
 const middlewares = (app) =>{
   app.use(express.json());
@@ -31,7 +32,8 @@ const middlewares = (app) =>{
 
 const routes = (app) => {
     app.use('/api/auth', authRoutes)
-    app.use("/apí/posts", postRoutes)
+    app.use("/api/posts", postRoutes)
+    app.use("/api/comments",commentRoutes);
 }
 
 const conectarDB = async () => {

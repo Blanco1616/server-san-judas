@@ -1,4 +1,4 @@
-import{Schema,model} from "mongoose";
+import{Schema, model} from "mongoose";
 
 const postSchema = new Schema({
     title:{
@@ -12,7 +12,7 @@ const postSchema = new Schema({
         trim: true
     },
     author:{
-        type: Schema.type.ObjecId,
+        type: Schema.Types.ObjectId,
         red: "User",
         required: true
 
@@ -25,4 +25,5 @@ const postSchema = new Schema({
     timestamps: true,
     versionKey: false
 })
+
 export default model('Post', postSchema)

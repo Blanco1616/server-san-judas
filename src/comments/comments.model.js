@@ -1,5 +1,5 @@
 import { text } from 'express'
-import { Schema,model } from 'mongoose'
+import { Schema, model } from 'mongoose'
 
 const commentSchema = new Schema ({
     text:{
@@ -15,7 +15,7 @@ const commentSchema = new Schema ({
 
     },
     author:{
-         type: Schema.type.ObjecId,
+         type: Schema.Types.ObjectId,
         red: 'User',
         required: true
 

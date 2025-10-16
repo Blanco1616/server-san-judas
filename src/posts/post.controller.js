@@ -1,9 +1,8 @@
-import Post from ',/Post.model.js'
-import User from '../users/user.model.js'
+import Post from './post.model.js'
+import User from '../user/user.model.js'
 import Comment from '../comments/comments.model.js'
-import { populate } from 'dotenv'
 
-export const crearePost = async (req, res)=>{
+export const createPost = async (req, res)=>{
     try{
         const { title, content} = req.body
         const authorId = req.uid
@@ -15,10 +14,10 @@ export const crearePost = async (req, res)=>{
 
         })
         await User.findByIdAndAndUpdate(author, {
-            $push: {post: post,_id}
+            $push: {post: post._id}
 
         })
-        const populatedPost = await Post.findById(post,_id)
+        const populatedPost = await Post.findById(post._id)
         .populate('author', 'name surmane username profilePicture')
         .populate('comments')
 
